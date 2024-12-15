@@ -26,8 +26,6 @@ fn main() {
     println!("The total is: {}", total);
 }
 
-//  i need to import the io library to read the text file
-
 
 
 fn get_text() -> (Vec<i32>, Vec<i32>) {
@@ -37,13 +35,11 @@ fn get_text() -> (Vec<i32>, Vec<i32>) {
     file.read_to_string(&mut contents).expect("something went wrong reading the file");
     let mut vec1: Vec<i32> = Vec::new();
     let mut vec2: Vec<i32> = Vec::new();
-    // breakpoint removed
     contents.split("\n").for_each(|line| {
         let mut line = line.split("   ");
         if line.clone().next() == Some("") {
             return;
         }
-        println!("{:?}", line);
         let val = line.next().unwrap();
         let val = val.trim().parse::<i32>().expect("couldn't parse val: {val}");
         vec1.push(val);
