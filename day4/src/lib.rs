@@ -37,15 +37,6 @@
 // .X.X.XMASX
 // Take a look at the little Elf's word search. How many times does XMAS appear?
 
-// one method would be to create multiple arrays of information
-// one array for each direction
-// then loop through each array forwards and backwards
-// how do I do this?
-
-// or I could just figure out what the patterns are and then test them as I loop through...
-// no, that seems like a lot of work
-// the ebst way is to crete the arrays and then loop through them
-
 use regex::Regex;
 use std::collections::HashMap;
 
@@ -56,7 +47,6 @@ pub fn pt2(text: &str) {
     let total = arrays.iter().map(|array| {
         count_xmas_2(array, &mut map)
     }).sum::<usize>();
-    // println!("The total is: {}", total);
 }
 
 pub fn pt1(text: &str) {
@@ -66,7 +56,6 @@ pub fn pt1(text: &str) {
         .map(|array| array.into_iter().map(|(_, c)| c).collect::<String>())
         .map(|array| count_xmas(array))
         .sum::<usize>();
-    // println!("The total is: {}", total);
 }
 
 pub fn get_text() -> String {
@@ -159,55 +148,7 @@ mod tests {
         let text = "abc\ndef\nghi";
         let rows = parse_text(&text.to_string());
         print_grid(&rows);
-        // print_grid(&rotate_n(rows.clone(), 1));
-        // print_grid(&rotate_n(rows.clone(), 2));
-        // print_grid(&rotate_n(rows.clone(), 3));
-        // assert_eq!(rotate_n(rows.clone(), 0), rows);
-        // assert_eq!(rotate_n(rows.clone(), 4), rows);
-        // assert_eq!(rotate_n(rows.clone(), 1), ["gda", "heb", "ifc"]);
-        // assert_eq!(rotate_n(rows.clone(), 2), ["ihg", "fed", "cba"]);
-        // assert_eq!(rotate_n(rows.clone(), 3), ["cfi", "beh", "adg"]);
     }
-
-    // #[test]
-    // fn test_rotate_diag() {
-    //     let rows = ["abc", "def", "ghi"];
-    //     let rows: Vec<String> = rows.iter().map(|s| s.to_string()).collect();
-    //     let rotated = ["..a", ".db", "gec", "hf.", "i.."];
-    //     print_grid(&rows);
-    //     print_grid(&rotated.iter().map(|s| s.to_string()).collect());
-    //     print_grid(&rotate_diag(rows.clone()));
-    //     print_grid(&rotate_diag(rotate_diag(rows.clone())));
-    //     assert_eq!(rotate_diag(rows.clone()), rotated);
-    // }
-
-    // #[test]
-    // fn test_reverse_diag() {
-    //     let rows = ["abc", "def", "ghi"];
-    //     let rows: Vec<String> = rows.iter().map(|s| s.to_string()).collect();
-    //     let rotated = ["..c", ".bf", "aei", "dh.", "g.."];
-    //     print_grid(&rows);
-    //     print_grid(&rotated.iter().map(|s| s.to_string()).collect());
-    //     print_grid(&rotate_diag(rows.clone()));
-    //     assert_eq!(rotate_diag(rotate_n(rows.clone(), 3)), rotated);
-    // }
-
-    // #[test]
-    // fn test_all() {
-    //     let rows = ["abc", "def", "ghi"];
-    //     let rows = rows.iter().map(|s| s.to_string()).collect();
-    //     let grids = get_rotations(rows);
-    //     let rows: Vec<&String> = grids.iter().flat_map(|g| g.iter()).collect();
-    //     let expected_strs = ["abc", "cba", "gec", "aei", "gda", "adg"];
-    //     for s in expected_strs {
-    //         assert!(rows.contains(&&s.to_string()), "s: {}", s);
-    //         assert!(
-    //             rows.contains(&&s.chars().rev().collect::<String>()),
-    //             "s: {}",
-    //             s
-    //         );
-    //     }
-    // }
 
     fn print_grid(rows: &Vec<Vec<(usize, char)>>) {
         println!("Printing grid:");
